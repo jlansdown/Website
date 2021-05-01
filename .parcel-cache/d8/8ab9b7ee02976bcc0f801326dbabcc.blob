@@ -1,0 +1,23 @@
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+var _phaser = require('phaser');
+var _phaserDefault = _parcelHelpers.interopDefault(_phaser);
+class Preloader extends _phaserDefault.default.Scene {
+  constructor() {
+    super('preloader');
+  }
+  preload() {
+    this.load.image('tiles', 'tiles/dungeon_tiles_extruded.png');
+    this.load.tilemapTiledJSON('dungeon', 'tiles/dungeon-01.json');
+    this.load.atlas('faune', 'character/fauna.png', 'character/fauna.json');
+    this.load.atlas('lizard', 'enemies/lizard.png', 'enemies/lizard.json');
+    this.load.atlas('treasure', 'items/treasure.png', 'items/treasure.json');
+    this.load.image('ui-heart-empty', 'ui/ui_heart_empty.png');
+    this.load.image('ui-heart-full', 'ui/ui_heart_full.png');
+    this.load.image('knife', 'weapons/weapon_knife.png');
+  }
+  create() {
+    this.scene.start('game');
+  }
+}
+exports.default = Preloader;

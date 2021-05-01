@@ -1,0 +1,49 @@
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+var _phaser = require('phaser');
+var _phaserDefault = _parcelHelpers.interopDefault(_phaser);
+var _eventsEventsCenter = require('../events/EventsCenter');
+class GameUI extends _phaserDefault.default.Scene {
+  constructor() {
+    super({
+      key: 'game-ui'
+    });
+  }
+  create() {
+    this.add.image(6, 26, 'treasure', 'coin_anim_f0.png');
+    const coinsLabel = this.add.text(12, 20, '0', {
+      fontSize: '14'
+    });
+    _eventsEventsCenter.sceneEvents.on('player-coins-changed', coins => {
+      coinsLabel.text = coins.toLocaleString();
+    });
+    this.hearts = this.add.group({
+      classType: _phaserDefault.default.GameObjects.Image
+    });
+    this.hearts.createMultiple({
+      key: 'ui-heart-full',
+      setXY: {
+        x: 10,
+        y: 10,
+        stepX: 16
+      },
+      quantity: 3
+    });
+    _eventsEventsCenter.sceneEvents.on('player-health-changed', this.handlePlayerHealthChanged, this);
+    this.events.once(_phaserDefault.default.Scenes.Events.SHUTDOWN, () => {
+      _eventsEventsCenter.sceneEvents.off('player-health-changed', this.handlePlayerHealthChanged, this);
+      _eventsEventsCenter.sceneEvents.off('player-coins-changed');
+    });
+  }
+  handlePlayerHealthChanged(health) {
+    this.hearts.children.each((go, idx) => {
+      const heart = go;
+      if (idx < health) {
+        heart.setTexture('ui-heart-full');
+      } else {
+        heart.setTexture('ui-heart-empty');
+      }
+    });
+  }
+}
+exports.default = GameUI;

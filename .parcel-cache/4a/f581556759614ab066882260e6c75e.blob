@@ -1,0 +1,29 @@
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+_parcelHelpers.export(exports, "createLizardAnims", function () {
+  return createLizardAnims;
+});
+const createLizardAnims = anims => {
+  anims.create({
+    key: 'lizard-idle',
+    frames: anims.generateFrameNames('lizard', {
+      start: 0,
+      end: 3,
+      prefix: 'lizard_m_idle_anim_f',
+      suffix: '.png'
+    }),
+    repeat: -1,
+    frameRate: 10
+  });
+  anims.create({
+    key: 'lizard-run',
+    frames: anims.generateFrameNames('lizard', {
+      start: 0,
+      end: 3,
+      prefix: 'lizard_m_run_anim_f',
+      suffix: '.png'
+    }),
+    repeat: -1,
+    frameRate: 10
+  });
+};

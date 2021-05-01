@@ -1,0 +1,28 @@
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+var _phaser = require('phaser');
+var _phaserDefault = _parcelHelpers.interopDefault(_phaser);
+var _scenesPreloader = require('./scenes/Preloader');
+var _scenesPreloaderDefault = _parcelHelpers.interopDefault(_scenesPreloader);
+var _scenesGame = require('./scenes/Game');
+var _scenesGameDefault = _parcelHelpers.interopDefault(_scenesGame);
+var _scenesGameUI = require('./scenes/GameUI');
+var _scenesGameUIDefault = _parcelHelpers.interopDefault(_scenesGameUI);
+exports.default = new _phaserDefault.default.Game({
+  type: _phaserDefault.default.AUTO,
+  width: 400,
+  height: 250,
+  physics: {
+    default: 'arcade',
+    arcade: {
+      gravity: {
+        y: 0
+      },
+      debug: false
+    }
+  },
+  scene: [_scenesPreloaderDefault.default, _scenesGameDefault.default, _scenesGameUIDefault.default],
+  scale: {
+    zoom: 2
+  }
+});
