@@ -5,18 +5,18 @@ import Game from './scenes/Game'
 
 export default new Phaser.Game({
 	type: Phaser.AUTO,
-	width: 512,
-	height: 512,
-	backgroundColor: '#333333',
+	width: 800, 
+	height: 500,
+	backgroundColor: '#000000',
 	physics: {
 		default: 'arcade',
 		arcade: {
 			gravity: { y: 0},
-			debug: false,
+			debug: true,
 		}
 	},
 	scene: [Preloader, Game],
 	scale: {
-		zoom: 2
+		zoom: 2,
 	}
 })
